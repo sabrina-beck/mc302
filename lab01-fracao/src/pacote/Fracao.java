@@ -26,10 +26,18 @@ public class Fracao {
 		return new Fracao(this.numerador + fracao.numerador, this.denominador);
 	}
 	
+	public Fracao sub(Fracao fracao) {
+		return this.add(fracao).inversa();
+	}
+	
 	@Override
 	public String toString() {
 		return MessageFormat.format("( {0} / {1} )", this.numerador,
 				this.denominador);
+	}
+	
+	private Fracao inversa() {
+		return new Fracao(- this.numerador, this.numerador);
 	}
 
 	private int calculaNovoNumerador(int novoDenominador) {

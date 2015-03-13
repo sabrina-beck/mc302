@@ -38,22 +38,43 @@ public class FracaoTest {
 	public void testAdicionarFracoesMesmoDenominador() {
 		Fracao umQuarto = new Fracao(1, 4);
 		Fracao seteQuartos = new Fracao(7, 4);
-		assertEquals(umQuarto.add(seteQuartos).toString(), "( 2 / 1 )");
+		assertEquals("( 2 / 1 )", umQuarto.add(seteQuartos).toString());
 		
 		Fracao umSetimo = new Fracao(1, 7);
 		Fracao doisSetimos = new Fracao(2, 7);
-		assertEquals(umSetimo.add(doisSetimos).toString(), "( 3 / 7 )");
+		assertEquals("( 3 / 7 )", umSetimo.add(doisSetimos).toString());
 	}
 	
 	@Test
 	public void testAdicionarFracoesComDenominadoresDiferentes() {
 		Fracao umQuarto = new Fracao(1, 4);
 		Fracao doisSetimos = new Fracao(2, 7);
-		assertEquals(umQuarto.add(doisSetimos).toString(), "( 15 / 28 )");
+		assertEquals("( 15 / 28 )", umQuarto.add(doisSetimos).toString());
 		
 		Fracao umSexto = new Fracao(1, 6);
 		Fracao seteQuintos = new Fracao(7, 5);
-		assertEquals(umSexto.add(seteQuintos).toString(), "( 47 / 30 )");
+		assertEquals("( 47 / 30 )", umSexto.add(seteQuintos).toString());
 	}
 	
+	@Test
+	public void testSubtrairFracoesMesmoDenominador() {
+		Fracao umQuarto = new Fracao(1, 4);
+		Fracao seteQuartos = new Fracao(7, 4);
+		assertEquals("( -6 / 4 )", umQuarto.sub(seteQuartos).toString());
+		
+		Fracao doisSetimos = new Fracao(2, 7);
+		Fracao umSetimo = new Fracao(1, 7);
+		assertEquals("( 1 / 7 )", doisSetimos.sub(umSetimo).toString());
+	}
+
+	@Test
+	public void testSubtrairFracoesComDenominadoresDiferentes() {
+		Fracao umQuarto = new Fracao(1, 4);
+		Fracao doisSetimos = new Fracao(2, 7);
+		assertEquals("( -1 / 28 )", umQuarto.sub(doisSetimos).toString());
+		
+		Fracao umSexto = new Fracao(1, 6);
+		Fracao seteQuintos = new Fracao(7, 5);
+		assertEquals("( -37 / 30 )", umSexto.sub(seteQuintos).toString());
+	}
 }
