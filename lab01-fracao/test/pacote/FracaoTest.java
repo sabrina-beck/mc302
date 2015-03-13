@@ -77,4 +77,15 @@ public class FracaoTest {
 		Fracao seteQuintos = new Fracao(7, 5);
 		assertEquals("( -37 / 30 )", umSexto.sub(seteQuintos).toString());
 	}
+	
+	@Test
+	public void testMultiplicarFracoes() {
+		Fracao umQuarto = new Fracao(1, 4);
+		Fracao doisSetimos = new Fracao(2, 7);
+		assertEquals("( 1 / 14 )", umQuarto.mult(doisSetimos).toString());
+		
+		Fracao umQuartoNegativo = new Fracao(1, -4);
+		Fracao tresSetimos = new Fracao(3, 7);
+		assertEquals("( -3 / 28 )", umQuartoNegativo.mult(tresSetimos).toString());
+	}
 }

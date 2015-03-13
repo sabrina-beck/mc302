@@ -30,6 +30,10 @@ public class Fracao {
 		return this.add(fracao.oposta());
 	}
 	
+	public Fracao mult(Fracao fracao) {
+		return new Fracao(this.numerador * fracao.numerador, this.denominador * fracao.denominador);
+	}
+	
 	@Override
 	public String toString() {
 		return MessageFormat.format("( {0} / {1} )", this.numerador,
