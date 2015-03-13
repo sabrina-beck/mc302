@@ -17,16 +17,13 @@ public class Fracao {
 	}
 	
 	public Fracao add(Fracao fracao) {
+		
 		if(this.denominador != fracao.denominador) {
 			int mmc = Math.mmc(this.denominador, fracao.denominador);
-			return this.mudarDenominador(mmc).add(fracao.mudarDenominador(mmc));
+			return new Fracao(this.calculaNovoNumerador(mmc) + fracao.calculaNovoNumerador(mmc), mmc);			
 		}
 		
 		return new Fracao(this.numerador + fracao.numerador, this.denominador);
-	}
-
-	private Fracao mudarDenominador(int novoDenominador) {
-		return new Fracao((novoDenominador / this.denominador)* this.numerador, novoDenominador);
 	}
 	
 	@Override
@@ -35,6 +32,10 @@ public class Fracao {
 				this.denominador);
 	}
 
+	private int calculaNovoNumerador(int novoDenominador) {
+		return this.numerador * (novoDenominador / this.denominador);
+	}
+	
 	private void simplificar() {
 		if (this.denominador < 0) {
 			this.numerador *= -1;
