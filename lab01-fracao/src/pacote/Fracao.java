@@ -27,7 +27,7 @@ public class Fracao {
 	}
 	
 	public Fracao sub(Fracao fracao) {
-		return this.add(fracao).inversa();
+		return this.add(fracao.oposta());
 	}
 	
 	@Override
@@ -36,8 +36,8 @@ public class Fracao {
 				this.denominador);
 	}
 	
-	private Fracao inversa() {
-		return new Fracao(- this.numerador, this.numerador);
+	private Fracao oposta() {
+		return new Fracao(- this.numerador, this.denominador);
 	}
 
 	private int calculaNovoNumerador(int novoDenominador) {

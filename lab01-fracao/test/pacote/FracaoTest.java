@@ -60,7 +60,7 @@ public class FracaoTest {
 	public void testSubtrairFracoesMesmoDenominador() {
 		Fracao umQuarto = new Fracao(1, 4);
 		Fracao seteQuartos = new Fracao(7, 4);
-		assertEquals("( -6 / 4 )", umQuarto.sub(seteQuartos).toString());
+		assertEquals("( -3 / 2 )", umQuarto.sub(seteQuartos).toString());
 		
 		Fracao doisSetimos = new Fracao(2, 7);
 		Fracao umSetimo = new Fracao(1, 7);
