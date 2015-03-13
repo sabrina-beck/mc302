@@ -38,9 +38,22 @@ public class Fracao implements Comparable<Fracao> {
 		return new Fracao(this.numerador * fracao.denominador, this.denominador * fracao.numerador);
 	}
 	
+	public Fracao oposta() {
+		return new Fracao(-this.numerador, this.denominador);
+	}
+	
 	public float toFloat() {
 		return this.numerador / this.denominador;
 	}
+	
+	public int comparesTo(Fracao fracao) {
+		int compareResult = this.compareTo(fracao);
+		if(compareResult < 0)
+			return -1;
+		else if(compareResult > 0)
+			return 1;
+	    return 0;
+    }
 	
 	@Override
 	public int compareTo(Fracao fracao) {
@@ -55,10 +68,6 @@ public class Fracao implements Comparable<Fracao> {
 	@Override
 	public String toString() {
 		return MessageFormat.format("( {0} / {1} )", this.numerador, this.denominador);
-	}
-	
-	private Fracao oposta() {
-		return new Fracao(-this.numerador, this.denominador);
 	}
 	
 	private int novoNumerador(int novoDenominador) {
