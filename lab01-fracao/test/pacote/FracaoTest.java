@@ -128,4 +128,42 @@ public class FracaoTest {
 		assertTrue(umQuarto.compareTo(umQuarto) == 0);
 	}
 	
+	@Test
+	public void testFracaoEnunciado() {
+		Fracao f1 = new Fracao(1, 2);
+		Fracao f2 = new Fracao(1, 3);
+		Fracao f3 = f1.add(f2);
+		Fracao f4 = f1.sub(f2);
+		Fracao f5 = f1.mult(f2);
+		Fracao f6 = f1.div(f2);
+		assertEquals("f1: ( 1 / 2 )", "f1: " + f1.toString());
+		assertEquals("f2: ( 1 / 3 )", "f2: " + f2.toString());
+		assertEquals("f3: ( 5 / 6 )", "f3: " + f3.toString());
+		assertEquals("f4: ( 1 / 6 )", "f4: " + f4.toString());
+		assertEquals("f5: ( 1 / 6 )", "f5: " + f5.toString());
+		assertEquals("f6: ( 3 / 2 )", "f6: " + f6.toString());
+		assertEquals("float(f3): 0.8333333", "float(f3): " + f3.toFloat());
+	}
+	
+	@Test
+	public void testFracaoSusy() {
+		Fracao f1 = new Fracao(1, 2);
+		Fracao f2 = new Fracao(1, 3);
+		Fracao f3 = f1.add(f2);
+		Fracao f4 = f1.sub(f2);
+		Fracao f5 = f1.mult(f2);
+		Fracao f6 = f1.div(f2);
+		Fracao f7 = new Fracao(15, 9);
+		assertEquals("f1: ( 1 / 2 )", "f1: " + f1.toString());
+		assertEquals("f2: ( 1 / 3 )", "f2: " + f2.toString());
+		assertEquals("f3: ( 5 / 6 )", "f3: " + f3.toString());
+		assertEquals("f4: ( 1 / 6 )", "f4: " + f4.toString());
+		assertEquals("f5: ( 1 / 6 )", "f5: " + f5.toString());
+		assertEquals("f6: ( 3 / 2 )", "f6: " + f6.toString());
+		assertEquals("f7: ( 5 / 3 )", "f7: " + f7.toString());
+		assertEquals("float(f3): 0.8333333", "float(f3): " + f3.toFloat());
+		assertEquals("f2 compareTo f3: -1", "f2 compareTo f3: " + f2.compareTo(f3));
+		assertEquals("f2 compareTo f2: 0", "f2 compareTo f2: " + f2.compareTo(f2));
+		assertEquals("f6 compareTo f1: 1", "f6 compareTo f1: " + f6.compareTo(f1));
+	}
 }
