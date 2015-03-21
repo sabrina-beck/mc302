@@ -1,0 +1,17 @@
+*** Partes utilizadas na producao ****
+codigo:112 nome:motor m112 descricao:motor de avanco do cabecote valor:100.0 potencia:1.2 corrente:1.1 rpm:1250
+codigo:114 nome:motor m114 descricao:motor auxiliar valor:60.0 potencia:0.6 corrente:0.8 rpm:1250
+codigo:111 nome:motor m111 descricao:motor de ventilador valor:70.0 potencia:1.0 corrente:1.0 rpm:3000
+codigo:110 nome:motor m110 descricao:motor principal valor:120.0 potencia:1.8 corrente:1.5 rpm:1250
+codigo:231 nome:parafuso p1 descricao:parafuso de fixacao do cabecote valor:2.5 comprimento:100.0 diametro:8.0
+codigo:232 nome:parafuso p2 descricao:parafuso de fixacao do motor valor:2.5 comprimento:80.0 diametro:6.0
+codigo:233 nome:parafuso p3 descricao:parafuso de fixacao do ventilador valor:2.0 comprimento:60.0 diametro:6.0
+codigo:234 nome:parafuso p4 descricao:parafuso de uso geral valor:3.0 comprimento:120.0 diametro:12.0
+
+*** Itens solicitados ***
+cod:112 nome:motor m112 quantidade:10 valor unitario:100.0 valor:1000.0
+cod:232 nome:parafuso p2 quantidade:50 valor unitario:2.5 valor:125.0
+cod:234 nome:parafuso p4 quantidade:30 valor unitario:3.0 valor:90.0
+cod:111 nome:motor m111 quantidade:5 valor unitario:70.0 valor:350.0
+Valor total:1565.0
+
