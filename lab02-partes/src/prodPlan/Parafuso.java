@@ -40,4 +40,9 @@ public class Parafuso extends Parte {
 				String.format("%.1f", this.diametro));
 	}
 
+	@Override
+	public Object accept(ProdPlanVisitor visitor) {
+		return visitor.visit(this);
+	}
+
 }

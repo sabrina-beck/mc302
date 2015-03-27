@@ -7,15 +7,15 @@ import java.text.MessageFormat;
  * 
  * @author Sabrina Beck Angelini <157240>
  **/
-public abstract class Parte {
+public abstract class Parte implements Visitable {
 
-	protected int codigo;
+	protected int cod;
 	protected String nome;
 	protected String descricao;
 	protected float valor;
 
 	public Parte(int codigo, String nome, String descricao, float valor) {
-		this.codigo = codigo;
+		this.cod = codigo;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.valor = valor;
@@ -39,7 +39,7 @@ public abstract class Parte {
 	protected String asString() {
 		return MessageFormat.format(
 				"codigo:{0} nome:{1} descricao:{2} valor:{3}",
-				String.format("%d", this.codigo), this.nome, this.descricao,
+				String.format("%d", this.cod), this.nome, this.descricao,
 				String.format("%.1f", this.valor));
 	}
 

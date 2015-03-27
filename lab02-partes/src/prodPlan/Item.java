@@ -9,10 +9,10 @@ import java.text.MessageFormat;
  * 
  * @author Sabrina Beck Angelini <157240>
  **/
-public class Item {
+public class Item implements Comparable<Item>, Visitable {
 
 	protected Parte parte;
-	private int quantidade;
+	protected int quantidade;
 
 	/**
 	 * Cria uma instância da classe Item
@@ -32,7 +32,7 @@ public class Item {
 	 *         valor unitário da parte
 	 **/
 	public float calculaValor() {
-		return this.quantidade * parte.valor;
+		return this.quantidade * parte.calculaValor();
 	}
 
 	/**
@@ -42,9 +42,19 @@ public class Item {
 	public String toString() {
 		return MessageFormat.format(
 				"cod:{0} nome:{1} quantidade:{2} valor unitario:{3} valor:{4}",
-				String.format("%d", this.parte.codigo), this.parte.nome,
+				String.format("%d", this.parte.cod), this.parte.nome,
 				String.format("%d", this.quantidade),
 				String.format("%.1f", this.parte.valor),
 				String.format("%.1f", this.calculaValor()));
+	}
+	
+	@Override
+	public int compareTo(Item o) {
+		return this.quantidade - o.quantidade;
+	}
+
+	@Override
+	public Object accept(ProdPlanVisitor visitor) {
+		return visitor.visit(this);
 	}
 }

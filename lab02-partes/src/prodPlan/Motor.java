@@ -42,4 +42,9 @@ public class Motor extends Parte {
 				String.format("%.1f", this.corrente), String.format("%d", this.rpm));
 	}
 
+	@Override
+	public Object accept(ProdPlanVisitor visitor) {
+		return visitor.visit(this);
+	}
+
 }
