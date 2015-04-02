@@ -1,0 +1,10 @@
+cod:231 quant:22
+cod:511 quant:44
+cod:233 quant:12
+cod:232 quant:35
+cod:321 quant:65
+cod:322 quant:24
+cod:401 quant:26
+cod:512 quant:33
+cod:112 quant:38
+cod:402 quant:12

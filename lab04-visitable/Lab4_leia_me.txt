@@ -1,0 +1,11 @@
+Arquivos disponibilizados com a atividade 4 (versão 2):
+1 - Visitable.java: interface a ser implementada pelas classes Item, Parte e derivadas
+    (já deve ter sido implementada na atividade 3)
+2 - ProdPlanVisitor.java: interface a ser implementada pela classe Lab4XMLVisitor (já
+    foi utilizada nos testes da atividade 3)
+3 - TestPartListVisitor.java: classe usada para o teste desta atividade.
+
+4 - CalcTotVisitor.java: exemplo de visitor, cuja visita retorna o valor total das partes relacionadas
+    numa lista.
+
+5- Dados.java: gera a massa de dados a ser usada nos testes (mesma da atividade 3)
