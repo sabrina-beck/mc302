@@ -1,17 +1,18 @@
 package prodPlan;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PartListVisitor extends ProdPlanVisitor {
 	
-	private Map<Integer, Integer> mapa = new HashMap<Integer, Integer>();
+	private Map<Integer, Integer> mapa = new LinkedHashMap<Integer, Integer>();
 	
 	public String visit(List<Item> itens) {
 		for (Item item : itens)
-			item.getParte().accept(this);
+			item.accept(this);
 		
 		String listagem = "";
 		for (int codigo : mapa.keySet()) {
