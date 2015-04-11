@@ -49,13 +49,22 @@ public class PartListVisitor extends ProdPlanVisitor {
 	
 	@Override
 	public Object visit(Item item) {
-		item.getParte().accept(this);
-		int codigo = item.getParte().getCod();
+		Parte parte = item.getParte();
+		int codigo = parte.getCod();
+		
+		if (parte instanceof ParteComposta) {
+			for (Item it : ((ParteComposta) parte).getItens())
+				it.setQuantidade(it.getQuantidade() * item.getQuantidade());
+		}
+		
+		parte.accept(this);
+		
 		if (this.mapa.containsKey(codigo)) {
 			int quantidade = this.mapa.get(codigo);
 			quantidade += item.getQuantidade();
 			this.mapa.put(codigo, quantidade);
 		}
+		
 		return null;
 	}
 	

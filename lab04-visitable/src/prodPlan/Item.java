@@ -65,4 +65,8 @@ public class Item implements Comparable<Item>, Visitable {
 	public int getQuantidade() {
 	    return quantidade;
     }
+
+	public void setQuantidade(int i) {
+		this.quantidade = i;	    
+    }
 }
