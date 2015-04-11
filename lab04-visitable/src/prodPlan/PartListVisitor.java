@@ -2,16 +2,41 @@ package prodPlan;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Visitor que contém os métodos que, para cada parte, calcula a quantidade da
+ * mesma presente em uma lista de itens.
+ * 
+ * O problema aqui é que estou presa à classe abstrata ProdPlanVisitor, e não é
+ * possível calcular a quantidade de uma parte dentro de seu método de visita,
+ * para resolver isso tive que concentrar a lógica na visita do Item que é a
+ * classe que tem a informação de quantidade desejada, assim os métodos visit de
+ * cada parte simplesmente adicionam o código da parte no mapa global.
+ * 
+ * @author Sabrina Beck Angelini <157240>
+ **/
 public class PartListVisitor extends ProdPlanVisitor {
 	
+	/**
+	 * Mapa que será alterado por cada método de visita com as quantidades de
+	 * cada parte, ou seja, sua chave será o código da parte e seu valor, a
+	 * quantidade
+	 **/
 	private Map<Integer, Integer> mapa = new LinkedHashMap<Integer, Integer>();
 	
 	public String visit(List<Item> itens) {
-		for (Item item : itens)
+		/**
+		 * A lógica utilizada altera a lista dada, como uma boa prática, é
+		 * melhor não alterar a lista original, por isso o processamento utiliza
+		 * uma cópia
+		 **/
+		List<Item> copyItens = new ArrayList<Item>(itens);
+		
+		for (Item item : copyItens)
 			item.accept(this);
 		
 		String listagem = "";
