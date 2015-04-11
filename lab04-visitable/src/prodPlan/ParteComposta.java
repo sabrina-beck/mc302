@@ -12,7 +12,7 @@ public class ParteComposta extends Parte {
 
 	public ParteComposta(int codigo, String nome, String descricao, float valor) {
 		super(codigo, nome, descricao, valor);
-		this.itens = new HashSet<>();
+		this.itens = new HashSet<Item>();
 	}
 
 	public void agregaItem(Parte parte, int quantidade)

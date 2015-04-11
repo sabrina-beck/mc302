@@ -11,7 +11,7 @@ public class ParteEspecifica extends Parte {
 	public ParteEspecifica(int codigo, String nome, String descricao,
 			float valor) {
 		super(codigo, nome, descricao, valor);
-		this.caracteristicas = new HashMap<>();
+		this.caracteristicas = new HashMap<String, Caracteristica>();
 	}
 
 	public void agregaCaracteristica(String nome, String conteudo) throws IllegalArgumentException {
