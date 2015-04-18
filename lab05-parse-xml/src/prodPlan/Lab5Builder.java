@@ -44,7 +44,9 @@ public class Lab5Builder extends DefaultHandler implements InterfaceLab5 {
 		try {
 			parser = factory.newSAXParser();
 			parser.parse(fileName, this);
-		} catch (ParserConfigurationException | SAXException e) {
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException  e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
