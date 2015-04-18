@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<lista>
+   <itens>
+      <item cod='1021' quant='1' />
+      <item cod='1022' quant='1' />
+      <item cod='2043' quant='1' />
+      <item cod='1023' quant='1' />
+   </itens>
+   <partes>
+      <partecomposta cod='1021' nome='base fixa bf1' descricao='base fixa de uso geral' valor='88.5' >
+         <itens>
+            <item cod='231' quant='1' />
+            <item cod='511' quant='2' />
+            <item cod='233' quant='3' />
+            <item cod='232' quant='4' />
+            <item cod='321' quant='5' />
+            <item cod='322' quant='6' />
+         </itens>
+      </partecomposta>
+      <parafuso cod='231' nome='parafuso p1' descricao='parafuso de fixacao do cabecote' valor='2.5'  comprimento='100.0' diametro='8.0'/>
+      <parteespecifica cod='511' nome='placa pk1' descricao='placa principal' valor='6.0' >
+         <caracteristica nome='espessura' conteudo='3' />
+         <caracteristica nome='largura' conteudo='450' />
+         <caracteristica nome='comprimento' conteudo='500' />
+      </parteespecifica>
+      <parafuso cod='233' nome='parafuso p3' descricao='parafuso de fixacao do ventilador' valor='2.0'  comprimento='60.0' diametro='6.0'/>
+      <parafuso cod='232' nome='parafuso p2' descricao='parafuso de fixacao do motor' valor='2.5'  comprimento='80.0' diametro='6.0'/>
+      <parteespecifica cod='321' nome='haste h1' descricao='haste de uso geral 1' valor='4.0' >
+         <caracteristica nome='espessura' conteudo='12' />
+         <caracteristica nome='largura' conteudo='45' />
+         <caracteristica nome='comprimento' conteudo='500' />
+      </parteespecifica>
+      <parteespecifica cod='322' nome='haste h2' descricao='haste de uso geral 2' valor='3.0' >
+         <caracteristica nome='espessura' conteudo='12' />
+         <caracteristica nome='largura' conteudo='45' />
+         <caracteristica nome='comprimento' conteudo='600' />
+      </parteespecifica>
+      <partecomposta cod='1022' nome='base giratoria bgx' descricao='base giratoria de uso geral' valor='630.5' >
+         <itens>
+            <item cod='231' quant='1' />
+            <item cod='232' quant='2' />
+            <item cod='401' quant='3' />
+            <item cod='512' quant='4' />
+            <item cod='112' quant='5' />
+            <item cod='511' quant='6' />
+            <item cod='321' quant='7' />
+         </itens>
+      </partecomposta>
+      <parteespecifica cod='401' nome='eixo e1' descricao='eixo basico 1' valor='6.0' >
+         <caracteristica nome='comprimento' conteudo='350' />
+         <caracteristica nome='diametro' conteudo='45' />
+      </parteespecifica>
+      <parteespecifica cod='512' nome='placa pk2' descricao='placa auxiliar' valor='4.0' >
+         <caracteristica nome='obs' conteudo='recorte especial' />
+         <caracteristica nome='espessura' conteudo='3' />
+         <caracteristica nome='largura' conteudo='320' />
+         <caracteristica nome='comprimento' conteudo='400' />
+      </parteespecifica>
+      <motor cod='112' nome='motor m112' descricao='motor de avanco do cabecote' valor='100.0'  potencia='1.2' corrente='1.1' rpm='1250' />
+      <partecomposta cod='2043' nome='plataforma p1' descricao='plataforma principal' valor='4381.0' >
+         <itens>
+            <item cod='232' quant='1' />
+            <item cod='321' quant='2' />
+            <item cod='1021' quant='3' />
+            <item cod='401' quant='4' />
+            <item cod='1022' quant='5' />
+            <item cod='512' quant='6' />
+            <item cod='402' quant='7' />
+            <item cod='112' quant='8' />
+            <item cod='231' quant='10' />
+         </itens>
+      </partecomposta>
+      <parteespecifica cod='402' nome='eixo e2' descricao='eixo basico 2' valor='4.5' >
+         <caracteristica nome='comprimento' conteudo='450' />
+         <caracteristica nome='diametro' conteudo='30' />
+      </parteespecifica>
+      <partecomposta cod='1023' nome='kit de reposicao k1' descricao='kit de reposicao da plataforma p1' valor='82.5' >
+         <itens>
+            <item cod='321' quant='1' />
+            <item cod='231' quant='2' />
+            <item cod='512' quant='3' />
+            <item cod='401' quant='4' />
+            <item cod='402' quant='5' />
+            <item cod='232' quant='6' />
+         </itens>
+      </partecomposta>
+   </partes>
+</lista>
+
