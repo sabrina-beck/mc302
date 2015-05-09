@@ -29,11 +29,13 @@ public class MultithreadSorter<T> implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("Iniciando...");
 		try {
 	        ordenar(this.indiceInicio, this.indiceFim);
         } catch (InterruptedException e) {
 	        e.printStackTrace();
         }
+		System.out.println("Finalizando...");
 	}
 
 	private void ordenar(int inicio, int fim) throws InterruptedException {
@@ -59,15 +61,17 @@ public class MultithreadSorter<T> implements Runnable {
 				esquerda++;
 				direita--;
 			}
-		} while (esquerda < direita);
+		} while (esquerda <= direita);
 
 		Thread filhaEsquerda = null;
 		Thread filhaDireita = null;
 
 		if (inicio < direita)
+//			quickSort(inicio, direita);
 			filhaEsquerda = threadSort(inicio, direita);
 
 		if (fim > esquerda)
+//			quickSort(esquerda, fim);
 			filhaDireita = threadSort(esquerda, fim);
 
 		if (filhaEsquerda != null)
