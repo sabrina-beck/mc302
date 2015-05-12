@@ -30,8 +30,8 @@ public class IsThereMoreThanOneInstanceFromTheSameAnonymousClass {
 		
 	    System.out.println(array[0].getClass().getName());
 	    System.out.println(array[1].getClass().getName());
-	    System.out.println(array[1].getClass().equals(array[1].getClass()));
-	    System.out.println(array[1].equals(array[1]));
+	    System.out.println(array[1].getClass().equals(array[0].getClass()));
+	    System.out.println(array[1].equals(array[0]));
     }
 	
 }
