@@ -1,6 +1,6 @@
 package anonymous;
 
-public class IsThereMoreThanOneInstanceFromTheSameAnonymousClass2 {
+public class AnonymousClassWithCopyPaste {
 
 	private static final int SIZE = 1000;
 

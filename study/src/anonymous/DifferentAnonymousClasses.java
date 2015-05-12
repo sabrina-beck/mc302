@@ -1,6 +1,6 @@
 package anonymous;
 
-public class IsThereMoreThanOneInstanceFromTheSameAnonymousClass3 {
+public class DifferentAnonymousClasses {
 
 	private static final int SIZE = 1000;
 
