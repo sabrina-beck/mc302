@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+/**
+ * Terá o papel de modelo no padrão MVC, com a lógica do jogo gomoku
+ * 
+ * @author Sabrina Beck Angelini <157240>
+ **/
 public class Model implements ModelInterface {
 
 	private int[][] tabuleiro;
@@ -74,7 +79,7 @@ public class Model implements ModelInterface {
 					this.tabuleiro[indiceLinha][coluna] = Integer.parseInt(linha.charAt(coluna) + "");
 				indiceLinha++;
 			}
-			
+
 			reader.close();
 			return true;
 
@@ -138,17 +143,21 @@ public class Model implements ModelInterface {
 		ganhador += verificarDiagonaisPrincipais();
 		ganhador += verificarDiagonaisSecundarias();
 
+		if (ganhador == 4 * GAMEOVER)
+			return GAMEOVER;
+
 		if (ganhador != NONE && ganhador != BLACK && ganhador != WHITE)
 			return NONE;
-
 		return ganhador;
 	}
 
 	private int verificarDiagonaisSecundarias() {
-		int peca = NONE;
-		int qtdPeca = 0;
+		boolean podeTerVitoria = false;
 
 		for (int diagonal = 1; diagonal <= 2 * SIZE - 1; diagonal++) {
+			int peca = NONE, ultimaPeca = NONE;
+			int qtdPeca = 0;
+			int qtdEspacoVitoria = 0;
 			int linha = 0, coluna = 0;
 			boolean diagonalGrande;
 			if (diagonal > SIZE) {
@@ -163,27 +172,45 @@ public class Model implements ModelInterface {
 
 			for (; (linha < diagonal && !diagonalGrande) || (linha < SIZE && diagonalGrande); linha++, coluna--) {
 				int pecaAtual = this.tab(linha, coluna);
-				if (peca != pecaAtual) {
-					if (qtdPeca >= LINELENG && peca != NONE)
-						return peca;
-					peca = pecaAtual;
-					qtdPeca = 0;
+
+				if (pecaAtual != ultimaPeca && pecaAtual != NONE) {
+					qtdEspacoVitoria = 1;
+				} else {
+					qtdEspacoVitoria++;
 				}
-				qtdPeca++;
+
+				// trocou zera contagem
+				if (pecaAtual != peca) {
+					qtdPeca = 1;
+					peca = pecaAtual;
+				} else {
+					qtdPeca++;
+				}
+
+				if (qtdPeca >= LINELENG && peca != NONE)
+					return peca;
+
+				if (qtdEspacoVitoria >= LINELENG)
+					podeTerVitoria = true;
+
+				if (pecaAtual != NONE)
+					ultimaPeca = pecaAtual;
 			}
 		}
 
-		if (qtdPeca >= LINELENG)
-			return peca;
+		if (!podeTerVitoria)
+			return GAMEOVER;
 
 		return NONE;
 	}
 
 	private int verificarDiagonaisPrincipais() {
-		int peca = NONE;
-		int qtdPeca = 0;
+		boolean podeTerVitoria = false;
 
 		for (int diagonal = 1; diagonal <= 2 * SIZE - 1; diagonal++) {
+			int peca = NONE, ultimaPeca = NONE;
+			int qtdPeca = 0;
+			int qtdEspacoVitoria = 0;
 			int linha = 0, coluna = 0;
 			boolean diagonalGrande;
 			if (diagonal > SIZE) {
@@ -198,71 +225,119 @@ public class Model implements ModelInterface {
 
 			for (; (linha < diagonal && !diagonalGrande) || (linha < SIZE && diagonalGrande); coluna++, linha++) {
 				int pecaAtual = this.tab(linha, coluna);
-				if (peca != pecaAtual) {
-					if (qtdPeca >= LINELENG && peca != NONE)
-						return peca;
-					peca = pecaAtual;
-					qtdPeca = 0;
+
+				if (pecaAtual != ultimaPeca && pecaAtual != NONE) {
+					qtdEspacoVitoria = 1;
+				} else {
+					qtdEspacoVitoria++;
 				}
-				qtdPeca++;
+
+				// trocou zera contagem
+				if (pecaAtual != peca) {
+					qtdPeca = 1;
+					peca = pecaAtual;
+				} else {
+					qtdPeca++;
+				}
+
+				if (qtdPeca >= LINELENG && peca != NONE)
+					return peca;
+
+				if (qtdEspacoVitoria >= LINELENG)
+					podeTerVitoria = true;
+
+				if (pecaAtual != NONE)
+					ultimaPeca = pecaAtual;
 			}
 		}
 
-		if (qtdPeca >= LINELENG)
-			return peca;
+		if (!podeTerVitoria)
+			return GAMEOVER;
 
 		return NONE;
 	}
 
 	private int verificarColunas() {
-		int peca = NONE;
-		int qtdPeca = 0;
+		boolean podeTerVitoria = false;
 
-		for (int coluna = 0; coluna < SIZE; coluna++)
+		for (int coluna = 0; coluna < SIZE; coluna++) {
+			int peca = NONE, ultimaPeca = NONE;
+			int qtdPeca = 0;
+			int qtdEspacoVitoria = 0;
+
 			for (int linha = 0; linha < SIZE; linha++) {
 				int pecaAtual = this.tab(linha, coluna);
-				if (pecaAtual != peca) {
-					if (qtdPeca >= LINELENG && peca != NONE)
-						return peca;
-					qtdPeca = 0;
-					peca = pecaAtual;
-				}
-				qtdPeca++;
-			}
 
-		if (qtdPeca >= LINELENG)
-			return peca;
+				if (pecaAtual != ultimaPeca && pecaAtual != NONE) {
+					qtdEspacoVitoria = 1;
+				} else {
+					qtdEspacoVitoria++;
+				}
+
+				// trocou zera contagem
+				if (pecaAtual != peca) {
+					qtdPeca = 1;
+					peca = pecaAtual;
+				} else {
+					qtdPeca++;
+				}
+
+				if (qtdPeca >= LINELENG && peca != NONE)
+					return peca;
+
+				if (qtdEspacoVitoria >= LINELENG)
+					podeTerVitoria = true;
+
+				if (pecaAtual != NONE)
+					ultimaPeca = pecaAtual;
+			}
+		}
+
+		if (!podeTerVitoria)
+			return GAMEOVER;
+
 		return NONE;
 	}
 
 	private int verificarLinhas() {
-		int peca = NONE;
-		int qtdPeca = 0;
+		boolean podeTerVitoria = false;
 
-		for (int linha = 0; linha < SIZE; linha++)
+		for (int linha = 0; linha < SIZE; linha++) {
+			int peca = NONE, ultimaPeca = NONE;
+			int qtdPeca = 0;
+			int qtdEspacoVitoria = 0;
+
 			for (int coluna = 0; coluna < SIZE; coluna++) {
 				int pecaAtual = this.tab(linha, coluna);
-				if (pecaAtual != peca) {
-					if (qtdPeca >= LINELENG && peca != NONE)
-						return peca;
-					qtdPeca = 0;
-					peca = pecaAtual;
+
+				if (pecaAtual != ultimaPeca && pecaAtual != NONE) {
+					qtdEspacoVitoria = 1;
+				} else {
+					qtdEspacoVitoria++;
 				}
-				qtdPeca++;
+
+				// trocou zera contagem
+				if (pecaAtual != peca) {
+					qtdPeca = 1;
+					peca = pecaAtual;
+				} else {
+					qtdPeca++;
+				}
+
+				if (qtdPeca >= LINELENG && peca != NONE)
+					return peca;
+
+				if (qtdEspacoVitoria >= LINELENG)
+					podeTerVitoria = true;
+
+				if (pecaAtual != NONE)
+					ultimaPeca = pecaAtual;
 			}
-
-		if (qtdPeca >= LINELENG)
-			return peca;
-		return NONE;
-	}
-
-	public void print() {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>");
-		for (int i = 0; i < SIZE; i++) {
-			for (int j = 0; j < SIZE; j++)
-				System.out.print(this.tabuleiro[i][j] + " ");
-			System.out.println();
 		}
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>");
+
+		if (!podeTerVitoria)
+			return GAMEOVER;
+
+		return NONE;
 	}
 }
