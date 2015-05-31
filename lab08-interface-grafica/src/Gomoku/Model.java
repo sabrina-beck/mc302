@@ -340,4 +340,9 @@ public class Model implements ModelInterface {
 
 		return NONE;
 	}
+	
+	//Erro de compilacao no susy
+	void printTab(int a,int b,int c,int d) {
+		
+	}
 }
