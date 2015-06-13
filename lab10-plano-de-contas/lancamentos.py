@@ -1,8 +1,8 @@
 class Lancamento:
     numeroProximoLancamento = 1
     def __init__(self, data, descricao, valor, tipo):
-        self.numero = numeroProximoLancamento
-        numeroProximoLancamento += 1
+        self.numero = Lancamento.numeroProximoLancamento
+        Lancamento.numeroProximoLancamento += 1
         self.data = data
         self.descricao = descricao
         self.valor = valor
@@ -14,4 +14,4 @@ class Lancamento:
             tipo = "Cr"
         else:
             tipo = "Db"
-        return '<lancamento numero="%d" data="%s" valor="%.1f" tipo="%s>%s</lancamento>"' %(self.numero, self.data, self.valor, tipo, self.descricao)
+        return '<lancamento numero="%d" data="%s" valor="%.1f" tipo="%s">%s</lancamento>' %(self.numero, self.data, self.valor, tipo, self.descricao)

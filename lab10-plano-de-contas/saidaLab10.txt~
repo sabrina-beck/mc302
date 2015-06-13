@@ -1,0 +1,167 @@
+
+tstLab10: conta raiz agregada ao plano
+testLab10: erro ao agregar regra a conta - codConta: xBluft
+testeLab10: erro ao agregar lancamento - codConta:xBluft
+======== Plano de Contas =======
+<plano nome="Plano de Contas">
+    <conta cod="p" nome="Principal">
+        <conta cod="r1" nome="Receitas">
+            <conta cod="r1.p" nome="Produtos">
+                <regra nome="IR s/ produto" gatilho="0.0" dest="d1.i.ir" perc="0.3 tipo="Cr"/>
+                <regra nome="ICMS s/ produto" gatilho="0.0" dest="d1.i.icms" perc="0.05 tipo="Cr"/>
+            </conta>
+            <conta cod="r1.s" nome="Servicos">
+                <regra nome="IR s/ servicos" gatilho="0.0" dest="d1.i.ir" perc="0.2 tipo="Cr"/>
+                <regra nome="ISS s/ servicos" gatilho="0.0" dest="d1.i.iss" perc="0.05 tipo="Cr"/>
+            </conta>
+        </conta>
+        <conta cod="d1" nome="Despesas">
+            <conta cod="d1.p" nome="Pessoal">
+                <regra nome="abat. IR s/ pessoal" gatilho="0.0" dest="d1.i.ir" perc="0.1 tipo="Db"/>
+            </conta>
+            <conta cod="d1.s" nome="Servicos">
+                <regra nome="abat. ISS s/ servicos" gatilho="0.0" dest="d1.i.iss" perc="0.01 tipo="Db"/>
+            </conta>
+            <conta cod="d1.m" nome="Material">
+                <conta cod="d1.m.c" nome="Consumo">
+                </conta>
+                <conta cod="d1.m.p" nome="Permanente">
+                    <regra nome="abat. ICMS s/ mat. perm." gatilho="0.0" dest="d1.i.icms" perc="0.01 tipo="Db"/>
+                </conta>
+            </conta>
+            <conta cod="d1.i" nome="Impostos">
+                <conta cod="d1.i.ir" nome="IR">
+                </conta>
+                <conta cod="d1.i.iss" nome="ISS">
+                </conta>
+                <conta cod="d1.i.icms" nome="ICMS">
+                </conta>
+            </conta>
+        </conta>
+    </conta>
+</plano>
+
+
+==========  lancamentos: Produtos  ===========
+<extrato codConta="r1.p" nome="Produtos" >
+    <lancamento numero="1" data="10/05/15" valor="1200.0" tipo="Cr">100 caixas ProX Plus</lancamento>
+    <lancamento numero="4" data="15/05/15" valor="30000.0" tipo="Cr">200 caixas Limp Max</lancamento>
+    <lancamento numero="7" data="20/05/15" valor="5000.0" tipo="Cr">50 pacotes XMais Pro</lancamento>
+    <lancamento numero="10" data="25/05/15" valor="4000.0" tipo="Cr">40 galoes  Det Max XX</lancamento>
+    <lancamento numero="13" data="30/05/15" valor="24000.0" tipo="Cr">150 barris Super SolvX</lancamento>
+    <lancamento numero="16" data="3/05/15" valor="2400.0" tipo="Cr">12 caixas Limp Pro</lancamento>
+    <total>66600.0</total>
+</extrato>
+
+
+==========  lancamentos: Servicos  ===========
+<extrato codConta="r1.s" nome="Servicos" >
+    <lancamento numero="19" data="10/05/15" valor="12000.0" tipo="Cr">Curso R4</lancamento>
+    <lancamento numero="22" data="15/05/15" valor="15000.0" tipo="Cr">Treinamento T3</lancamento>
+    <lancamento numero="25" data="20/05/15" valor="12000.0" tipo="Cr">Curso R2</lancamento>
+    <lancamento numero="28" data="25/05/15" valor="10500.0" tipo="Cr">Consultoria</lancamento>
+    <lancamento numero="31" data="25/05/15" valor="20200.0" tipo="Cr">Alocacao</lancamento>
+    <total>69700.0</total>
+</extrato>
+
+
+==========  lancamentos: Receita  ===========
+<extrato codConta="r1" nome="Receitas" >
+    <lancamento numero="1" data="10/05/15" valor="1200.0" tipo="Cr">100 caixas ProX Plus</lancamento>
+    <lancamento numero="4" data="15/05/15" valor="30000.0" tipo="Cr">200 caixas Limp Max</lancamento>
+    <lancamento numero="7" data="20/05/15" valor="5000.0" tipo="Cr">50 pacotes XMais Pro</lancamento>
+    <lancamento numero="10" data="25/05/15" valor="4000.0" tipo="Cr">40 galoes  Det Max XX</lancamento>
+    <lancamento numero="13" data="30/05/15" valor="24000.0" tipo="Cr">150 barris Super SolvX</lancamento>
+    <lancamento numero="16" data="3/05/15" valor="2400.0" tipo="Cr">12 caixas Limp Pro</lancamento>
+    <lancamento numero="19" data="10/05/15" valor="12000.0" tipo="Cr">Curso R4</lancamento>
+    <lancamento numero="22" data="15/05/15" valor="15000.0" tipo="Cr">Treinamento T3</lancamento>
+    <lancamento numero="25" data="20/05/15" valor="12000.0" tipo="Cr">Curso R2</lancamento>
+    <lancamento numero="28" data="25/05/15" valor="10500.0" tipo="Cr">Consultoria</lancamento>
+    <lancamento numero="31" data="25/05/15" valor="20200.0" tipo="Cr">Alocacao</lancamento>
+    <total>136300.0</total>
+</extrato>
+
+
+==========  lancamentos: Despesas  ===========
+<extrato codConta="d1" nome="Despesas" >
+    <lancamento numero="2" data="10/05/15" valor="360.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="3" data="10/05/15" valor="60.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="5" data="15/05/15" valor="9000.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="6" data="15/05/15" valor="1500.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="8" data="20/05/15" valor="1500.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="9" data="20/05/15" valor="250.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="11" data="25/05/15" valor="1200.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="12" data="25/05/15" valor="200.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="14" data="30/05/15" valor="7200.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="15" data="30/05/15" valor="1200.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="17" data="3/05/15" valor="720.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="18" data="3/05/15" valor="120.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="20" data="10/05/15" valor="2400.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="21" data="10/05/15" valor="600.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="23" data="15/05/15" valor="3000.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="24" data="15/05/15" valor="750.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="26" data="20/05/15" valor="2400.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="27" data="20/05/15" valor="600.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="29" data="25/05/15" valor="2100.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="30" data="25/05/15" valor="525.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="32" data="25/05/15" valor="4040.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="33" data="25/05/15" valor="1010.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="34" data="10/05/15" valor="700.0" tipo="Cr">Suporte TI</lancamento>
+    <lancamento numero="35" data="10/05/15" valor="7.0" tipo="Db">abat. ISS s/ servicos</lancamento>
+    <lancamento numero="36" data="15/05/15" valor="32000.0" tipo="Cr">Folha Total</lancamento>
+    <lancamento numero="37" data="15/05/15" valor="3200.0" tipo="Db">abat. IR s/ pessoal</lancamento>
+    <lancamento numero="38" data="20/05/15" valor="200.0" tipo="Cr">Papel A4</lancamento>
+    <lancamento numero="39" data="25/05/15" valor="300.0" tipo="Cr">Toner</lancamento>
+    <lancamento numero="40" data="30/05/15" valor="340.0" tipo="Cr">Impressora</lancamento>
+    <lancamento numero="41" data="30/05/15" valor="3.4" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <lancamento numero="42" data="3/05/15" valor="2400.0" tipo="Cr">LapTop XBluft</lancamento>
+    <lancamento numero="43" data="3/05/15" valor="24.0" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <lancamento numero="44" data="30/05/15" valor="120.0" tipo="Cr">Lixeira</lancamento>
+    <lancamento numero="45" data="30/05/15" valor="1.2" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <total>73559.4</total>
+</extrato>
+
+
+==========  lancamentos: Impostos  ===========
+<extrato codConta="d1.i" nome="Impostos" >
+    <lancamento numero="2" data="10/05/15" valor="360.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="3" data="10/05/15" valor="60.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="5" data="15/05/15" valor="9000.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="6" data="15/05/15" valor="1500.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="8" data="20/05/15" valor="1500.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="9" data="20/05/15" valor="250.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="11" data="25/05/15" valor="1200.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="12" data="25/05/15" valor="200.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="14" data="30/05/15" valor="7200.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="15" data="30/05/15" valor="1200.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="17" data="3/05/15" valor="720.0" tipo="Cr">IR s/ produto</lancamento>
+    <lancamento numero="18" data="3/05/15" valor="120.0" tipo="Cr">ICMS s/ produto</lancamento>
+    <lancamento numero="20" data="10/05/15" valor="2400.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="21" data="10/05/15" valor="600.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="23" data="15/05/15" valor="3000.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="24" data="15/05/15" valor="750.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="26" data="20/05/15" valor="2400.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="27" data="20/05/15" valor="600.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="29" data="25/05/15" valor="2100.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="30" data="25/05/15" valor="525.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="32" data="25/05/15" valor="4040.0" tipo="Cr">IR s/ servicos</lancamento>
+    <lancamento numero="33" data="25/05/15" valor="1010.0" tipo="Cr">ISS s/ servicos</lancamento>
+    <lancamento numero="35" data="10/05/15" valor="7.0" tipo="Db">abat. ISS s/ servicos</lancamento>
+    <lancamento numero="37" data="15/05/15" valor="3200.0" tipo="Db">abat. IR s/ pessoal</lancamento>
+    <lancamento numero="41" data="30/05/15" valor="3.4" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <lancamento numero="43" data="3/05/15" valor="24.0" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <lancamento numero="45" data="30/05/15" valor="1.2" tipo="Db">abat. ICMS s/ mat. perm.</lancamento>
+    <total>37499.4</total>
+</extrato>
+
+
+==========  lancamentos: xBluft  ===========
+<extrato codConta="xBluft" ></extrato>
+
+
+======== Resumo ==========
+receita: 136300.0
+despesas: 73559.4
+saldo: 62740.6
+impostos: 37499.4
+

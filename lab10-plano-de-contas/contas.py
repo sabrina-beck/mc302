@@ -11,8 +11,8 @@ class Conta:
 		self.saldo = saldo
 		self.mae = None
 		self.filhas = []
-        self.lancamentos = []
-        self.regras = []
+		self.lancamentos = []
+		self.regras = []
 
 	#Agrega uma conta-filha a conta: retorna True indicando sucesso da operacao ou
 	#False indicando falha (p. ex. no caso de existir uma conta filha com o mesmo
@@ -36,19 +36,48 @@ class Conta:
 		self.filhas.append(filha)
 		filha.mae = self
 		return True
-    
-    def agregaLancamento(self, plano, lancamento):
-        for lanc in self.lancamentos:
-            if(lanc.numero == lancamento.numero
-               return False
-        #FIXME: pq recebe o plano?
-        self.lancamencos.append(lancamento)
-        return True
-    
-    def agregaRegra(self, regra):
-        self.regras.append(regra)
-               
-    def total(self):
+
+	def buscarContaFilha(self, codConta):
+		for conta in self.filhas:
+			if conta.cod == codConta:
+				return conta
+			possivelFilha = conta.buscarContaFilha(codConta)
+			if possivelFilha != None:
+				return possivelFilha
+		return None
+
+	def agregaLancamento(self, plano, lancamento):
+		for lanc in self.lancamentos:
+			if lanc.numero == lancamento.numero:
+				return False
+		for regra in self.regras:
+			regra.aplica(plano, lancamento)
+		#FIXME: pq recebe o plano?
+		self.lancamentos.append(lancamento)
+		return True
+
+	def agregaRegra(self, regra):
+		self.regras.append(regra)
+
+	def total(self):
+		soma = 0.0
+		for lancamento in self.lancamentos:
+			if lancamento.tipo == 0:
+				soma += lancamento.valor
+			else:
+				soma -= lancamento.valor
+		for conta in self.filhas:
+			soma += conta.total()
+		return soma
+
+	def historico(self):
+		def buscarTodosLancamentos (conta, lancamentos):
+			lancamentos += conta.lancamentos
+			for filha in conta.filhas:
+				buscarTodosLancamentos(filha, lancamentos)
+			return lancamentos
+		hist = buscarTodosLancamentos(self, [])
+		return sorted(hist, key=lambda l: l.numero, reverse=False)
 
 	#Retorna a representacao em forma de string de uma conta
 	def toString(self):
@@ -71,15 +100,25 @@ class Conta:
 		#de uma conta com uma identacao com base na hierarquia passada
 		def toXml(conta, hierarquia):
 			espacos = hierarquia * '    '
-			xml = '%s<conta cod="%s" nome="%s" saldo="%.1f"' %(espacos, conta.cod, conta.nome, conta.saldo)
-			#Tratamento de tags sem filhos
+			espacosNoFilho = (hierarquia + 1) * '    '
+			xml = '%s<conta cod="%s" nome="%s">\n' %(espacos, conta.cod, conta.nome)
+			
+			#if len(conta.filhas) != 0 or len(conta.regras) != 0:
+			#	xml += '>\n'
+				
+			if len(conta.regras) > 0:
+				for regra in conta.regras:
+					xml += '%s%s\n' %(espacosNoFilho, regra.toXML())
+			
 			if len(conta.filhas) > 0:
-				xml += '>\n'
 				for filha in conta.filhas:
 					xml += '%s\n' %toXml(filha, hierarquia + 1)
-				xml += '%s</conta>' %espacos
-			else:
-				xml += '/>'
+					
+			#if len(conta.filhas) == 0 and len(conta.regras) == 0:
+			#	xml += '/>'
+			#else:
+			xml += '%s</conta>' %espacos
+
 			return xml
 
 		return toXml(self, 1)

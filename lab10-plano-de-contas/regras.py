@@ -12,10 +12,11 @@ class Regra:
             tipo = "Cr"
         else:
             tipo = "Db"
-        return '<regra nome="%s" dest="%s" perc="%.2f" tipo="%s"/>' %(self.nome, self.dest,self.perc, tipo)
+        return '<regra nome="%s" gatilho="%.1f" dest="%s" perc="%g tipo="%s"/>' %(self.nome, self.gatilho, self.dest,self.perc, tipo)
         
     def aplica(self, plano, lancamento):
         if(lancamento.valor >= self.gatilho):
-            #qual a data e a descrição?
-            novoLancamento = Lancamento(lancamento.data, lancamento.descricao, lancamento.valor * self.perc, self.tipo)
-            #TODO: aplicar novoLancamentoa ao dest
+            from lancamentos import Lancamento
+            novoLancamento = Lancamento(lancamento.data, self.nome, lancamento.valor * self.perc, self.tipo)
+            contaDestino = plano.buscarConta(self.dest)
+            contaDestino.agregaLancamento(plano, novoLancamento)
